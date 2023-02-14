@@ -7,4 +7,4 @@
 // require('./otherref')
 const _ = require('lodash')
 
-console.log(_.replace('Hi Fred', 'Fred', 'Barney'))
+console.log(_.replace('Hi Fred', 'Fred', 'tarnsy'))
