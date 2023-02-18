@@ -1,10 +1,18 @@
-// const names  = require('./1-names');
-// const printName =require('./2-condition')
+const http = require("http");
+const fs = require("fs");
 
-// // printName(names.john)
-// // printName(names.smith)
+const filePath = "./content/big.txt";
 
-// require('./otherref')
-const _ = require('lodash')
-
-console.log(_.replace('Hi Fred', 'Fred', 'tarnsy'))
+http
+  .createServer(function (req, res) {
+    // const text = fs.readFileSync('./content/big.txt', 'utf8')
+    // res.end(text)
+    const fileStream = fs.createReadStream(filePath, "utf8");
+    fileStream.on("open", () => {
+      fileStream.pipe(res);
+    });
+    fileStream.on("error", (err) => {
+      res.end(err);
+    });
+  })
+  .listen(3012);
